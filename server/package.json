@@ -9,7 +9,9 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev:server": "nodemon index.js",
+    "dev:client": "npm run start --prefix client",
+    "dev": "npm-run-all --parallel dev:server dev:client"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,7 @@
     "passport-google-oauth20": "^1.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.14.12"
+    "nodemon": "^1.14.12",
+    "npm-run-all": "^4.1.2"
   }
 }
