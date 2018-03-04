@@ -18,14 +18,14 @@ passport.use(
       callbackURL: '/auth/google/callback',
       proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({ googleId: profile.id })
-        .then(
-          existingUser =>
-            existingUser || new User({ googleId: profile.id }).save()
-        )
-        .then(user => done(null, user))
-        .catch(err => console.error(err));
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        const existingUser = await User.findOne({ googleId: profile.id });
+        const user = existingUser || new User({ googleId: profile.id }).save();
+        done(null, user);
+      } catch (err) {
+        console.error(err);
+      }
     }
   )
 );
