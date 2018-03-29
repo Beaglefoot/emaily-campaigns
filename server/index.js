@@ -37,4 +37,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const PORT = process.env.PORT || 7000;
-app.listen(PORT, () => console.log(`express is running on PORT ${PORT}...`));
+const currentTime = new Date().toTimeString().split(' ')[0];
+app.listen(PORT, () =>
+  console.log(`[${currentTime}] express is running on PORT ${PORT}...`)
+);
